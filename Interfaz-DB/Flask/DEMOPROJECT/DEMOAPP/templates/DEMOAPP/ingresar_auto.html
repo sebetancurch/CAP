@@ -1,0 +1,15 @@
+{% extends "DEMOAPP/base.html" %}
+{% block content %}
+    <h1>Ingresar auto</h1>
+    <div class="container">
+      <form action=“/external/“ method=“post“>
+        {% csrf_token %}
+        Input Text:
+        <input type=“text“ name=“param“ required><br><br>
+        {{data_external}}<br><br>
+        {{data1}}
+        <br><br>
+        <input type=“submit“ value=“Execute External Python Script“>
+        </form>
+    </div>
+{% endblock content %}

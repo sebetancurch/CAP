@@ -1,0 +1,25 @@
+{% extends "DEMOAPP/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">{{ object.placa }}</a>
+                {% if data.estado == True %}
+                    <small class="text-muted">{{ object.hora_ingreso }}</small>
+                {% else %}
+                    <small> ---</small>
+                {% endif %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'update-page' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete-page' object.id %}">Delete</a>
+                </div>
+            </div>
+            <h2><a class="article-title">{{ object.propietario }}</a></h2>
+            {% if data.estado == True %}
+              <p class="article-content">{{ object.posicion }}</p>
+            {% else %}
+              <p>No ha ingresado</p>
+            {% endif %}
+        </div>
+    </article>
+{% endblock content %}

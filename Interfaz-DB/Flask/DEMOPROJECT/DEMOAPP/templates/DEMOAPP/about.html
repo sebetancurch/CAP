@@ -1,0 +1,30 @@
+{% extends "DEMOAPP/base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="container">
+        <form method="GET">
+            {{ filter.form|bootstrap }}
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    {% for data in filter.qs %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">Propietario: {{ data.propietario }}</a>
+              {% if data.estado == True %}
+                <small class="text-muted">{{ data.hora_ingreso }}</small>
+              {% else %}
+                <small> ---</small>
+              {% endif %}
+            </div>
+            <h2><a class="article-title">Placa: </a><a class="article-title" href="{% url 'detail-page' data.id %}">{{ data.placa }}</a></h2>
+            {% if data.estado == True %}
+              <p class="article-content">Posicion: {{ data.posicion }}</p>
+            {% else %}
+              <p>No ha ingresado</p>
+            {% endif %}
+          </div>
+        </article>
+    {% endfor %}
+    </div>
+{% endblock content %}
